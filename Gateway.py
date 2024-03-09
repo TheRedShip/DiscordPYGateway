@@ -1,11 +1,12 @@
 from Websocket.WebSocketManager import WebSocketManager
-import os
+from Utils.Requester import Requester
 
 class Gateway():
-	def __init__(self):
+	def __init__(self, token):
 		self.client = None
 		self.guilds = None
-		self.socket = WebSocketManager(self, os.getenv("token"))
+		self.requester = Requester(token)
+		self.socket = WebSocketManager(self, token)
 
 	def start(self):
 		self.socket.ws.run_forever()
