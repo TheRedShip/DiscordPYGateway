@@ -1,6 +1,6 @@
 from Utils.DataClass import DataClass
-from Classes.Member import Member
-from Classes.Channel import Channel
+from Classes.Single.Member import Member
+from Classes.Single.Channel import Channel
 
 class Guild:
 	def __init__(self, gateway, guild):

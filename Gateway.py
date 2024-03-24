@@ -5,6 +5,7 @@ class Gateway():
 	def __init__(self, token):
 		self.client = None
 		self.guilds = None
+		self.users = None
 		self.requester = Requester(token)
 		self.socket = WebSocketManager(self, token)
 

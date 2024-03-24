@@ -2,8 +2,9 @@ from constant import ALL_INTENTS, DISCORD_WS_URL,				\
 					OP_IDENTIFY, OP_HELLO, OP_EVENT_DISPATCH
 from Websocket.webSocketUtils import ws_heartbeat
 from Utils.DataClass import DataClass
-from Classes.Client import Client
-from Classes.Guilds import Guilds
+from Classes.Single.Client import Client
+from Classes.Multi.Guilds import Guilds
+from Classes.Multi.Users import Users
 from threading import Thread
 import websocket
 import json
@@ -67,6 +68,7 @@ class WebSocketManager():
 		print("READY")
 		self.gateway.client = Client(self.gateway, data.user)
 		self.gateway.guilds = Guilds(self.gateway, data.guilds)
+		self.gateway.users = Users(self.gateway, data.private_channels)
 	
 	def requests(self, op, d):
 		payload = {

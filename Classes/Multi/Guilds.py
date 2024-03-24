@@ -1,4 +1,4 @@
-from Classes.Guild import Guild
+from Classes.Single.Guild import Guild
 
 class Guilds:
 	def __init__(self, gateway, guilds_data):

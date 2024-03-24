@@ -19,4 +19,7 @@ class DataClass:
 	
 	def items(self):
 		return self.__dict__.items()
+	
+	def dict(self):
+		return self.__dict__
 
