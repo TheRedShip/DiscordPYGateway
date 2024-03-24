@@ -11,10 +11,7 @@ class DataClass:
 	def __repr__(self):
 		items = []
 		for key, value in self.__dict__.items():
-			if isinstance(value, DataClass):
-				items.append(f"'{key}': {value.__repr__()}")
-			else:
-				items.append(f"'{key}': '{value}'")
+			items.append(f"'{key}': '{value}'")
 		return '{' + ', '.join(items) + '}'
 	
 	def items(self):

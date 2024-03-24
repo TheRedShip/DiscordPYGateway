@@ -18,10 +18,7 @@ class Guild:
 	def __repr__(self):
 		items = []
 		for key, value in self.guild.items():
-			if isinstance(value, DataClass):
-				items.append(f"'{key}': {value.__repr__()}")
-			else:
-				items.append(f"'{key}': '{value}'")
+			items.append(f"'{key}': '{value}'")
 		return '{' + ', '.join(items) + '}'
 	
 	def member(self, id):
