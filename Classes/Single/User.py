@@ -29,4 +29,4 @@ class User():
 		return '{' + ', '.join(items) + '}'
 	
 	def send(self, message, tts=False):
-		return self.gateway.client.send(self.id, message, tts)
+		return self.gateway.client.send(self.channel_id, message, tts)
