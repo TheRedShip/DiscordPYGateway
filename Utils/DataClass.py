@@ -2,6 +2,8 @@
 
 class DataClass:
 	def __init__(self, data):
+		if (isinstance(data, list)):
+			data = data[0]
 		for key, value in data.items():
 			if isinstance(value, dict):
 				setattr(self, key, DataClass(value))
