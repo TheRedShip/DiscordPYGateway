@@ -9,13 +9,16 @@ class DataClass:
 				setattr(self, key, DataClass(value))
 			else:
 				setattr(self, key, value)
-	
+
 	def __repr__(self):
 		items = []
 		for key, value in self.__dict__.items():
 			items.append(f"'{key}': '{value}'")
 		return '{' + ', '.join(items) + '}'
 	
+	def has(self, param):
+		return hasattr(self, param)
+
 	def items(self):
 		return self.__dict__.items()
 	
