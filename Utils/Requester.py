@@ -1,5 +1,6 @@
 import time
 import requests
+import json
 
 class Requester:
 	def __init__(self, token):
@@ -15,13 +16,13 @@ class Requester:
 		self.baseUrl = "https://discord.com/api/v9/"
 
 	def post(self,url,payload):
-		result = requests.post(self.baseUrl + url,data=payload,headers=self.headers)
+		result = requests.post(self.baseUrl + url,data=json.dumps(payload),headers=self.headers)
 		return result
 
 	def patch(self,url,data):
 		result = requests.patch(self.baseUrl + url,data=data,headers=self.headers)
 		return result
 	
-	def get(self,url,params=None):
-		result = requests.get(self.baseUrl + url,headers=self.headers,params=params)
+	def get(self,url,payload=None):
+		result = requests.get(self.baseUrl + url,headers=self.headers, params=payload)
 		return result

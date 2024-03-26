@@ -12,5 +12,5 @@ class Users:
 		if (id == self.gateway.client.id):
 			return self.gateway.client
 		for user in self.users:
-			if (hasattr(user, "user_id") and user.user_id == id) or (hasattr(user, "id") and user.id == id):
+			if (hasattr(user, "channel_id") and user.channel_id == id) or (hasattr(user, "id") and user.id == id):
 				return user

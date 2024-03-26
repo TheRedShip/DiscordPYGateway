@@ -1,4 +1,5 @@
 from Utils.DataClass import DataClass
+import json
 
 class User():
 	def __init__(self, gateway, user):
@@ -30,3 +31,13 @@ class User():
 	
 	def send(self, message, tts=False):
 		return self.gateway.client.send(self.channel_id, message, tts)
+
+	def get_dm_messages(self, limit=50, before_id=None):
+		if (before_id == None):
+			before_id = self.last_message_id
+		payload = {
+			"limit": limit,
+			"before": before_id
+		}
+		response = self.gateway.requester.get(f"channels/{self.channel_id}/messages", payload)
+		return [DataClass(msg) for msg in json.loads(response.content.decode())]

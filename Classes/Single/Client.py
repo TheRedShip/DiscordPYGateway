@@ -20,4 +20,4 @@ class Client:
 			"nonce": str(int(time.time()*1000)),
 			"tts": tts
 		}
-		return self.gateway.requester.post(f"channels/{channel_id}/messages", json.dumps(payload))
+		return self.gateway.requester.post(f"channels/{channel_id}/messages", payload)
