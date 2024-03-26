@@ -24,7 +24,15 @@ class WebSocketManager():
 		self.events = {}
 		self.on("READY", self.ready)
 	
+	def is_valid_token(self):
+		return self.gateway.requester.get("quests/@me").status_code == 200
+
 	def on_open(self, ws):
+		if (not self.is_valid_token()):
+			self.emit_events({"t":"TOKEN_FAILURE", "d":{}})
+			self.ws.close()
+			exit()
+
 		payload = {
 			"token": self.token,
 			"intents": ALL_INTENTS,
@@ -43,10 +51,11 @@ class WebSocketManager():
 			self.emit_events(data)
 
 	def on_error(self, ws, error):
-		print("ERROR", error)
+		if (str(error) != "None"):
+			print("ERROR", error)
 
 	def on_close(self, ws, err, err_2):
-		pass
+		print("Closing")
 
 	def emit_events(self, data):
 		event_name = data["t"]
