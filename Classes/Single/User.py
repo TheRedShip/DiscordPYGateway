@@ -40,4 +40,11 @@ class User():
 			"before": before_id
 		}
 		response = self.gateway.requester.get(f"channels/{self.channel_id}/messages", payload)
-		return [DataClass(msg) for msg in json.loads(response.content.decode())]
+		return [DataClass(msg) for msg in response.json()]
+	
+	def get_info(self):
+		payload = {
+			"with_mutual_guilds": "true",
+			"with_mutual_friends_count": "true"
+		}
+		return DataClass(self.gateway.requester.get(f"users/{self.id}/profile", payload).json())

@@ -13,7 +13,10 @@ class DataClass:
 	def __repr__(self):
 		items = []
 		for key, value in self.__dict__.items():
-			items.append(f"'{key}': '{value}'")
+			if (isinstance(value, str)):
+				items.append(f"'{key}': '{value}'")
+			else:
+				items.append(f"'{key}': {value}")
 		return '{' + ', '.join(items) + '}'
 	
 	def has(self, param):

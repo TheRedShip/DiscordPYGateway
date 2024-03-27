@@ -19,5 +19,5 @@ class Member():
 		return '{' + ', '.join(items) + '}'
 	
 	def send(self, message, tts=False):
-		private_channel_id = self.gateway.users.get(self.id).id
+		private_channel_id = self.gateway.users.get(self.id).channel_id
 		return self.gateway.client.send(private_channel_id, message, tts)

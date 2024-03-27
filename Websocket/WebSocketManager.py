@@ -25,13 +25,13 @@ class WebSocketManager():
 		self.on("READY", self.ready)
 	
 	def is_valid_token(self):
-		return self.gateway.requester.get("quests/@me").status_code == 200
-
-	def on_open(self, ws):
-		if (not self.is_valid_token()):
+		if (self.gateway.requester.get("quests/@me").status_code != 200):
 			self.emit_events({"t":"TOKEN_FAILURE", "d":{}})
 			self.ws.close()
 			exit()
+
+	def on_open(self, ws):
+		self.is_valid_token()
 
 		payload = {
 			"token": self.token,
@@ -61,12 +61,11 @@ class WebSocketManager():
 		event_name = data["t"]
 		event_data = data["d"]
 
-		transformed_data = DataClass(event_data)
 		if (event_name not in self.events):
 			print(event_name)
 		else:
 			for callback in self.events[event_name]:
-				callback(transformed_data)
+				callback(DataClass(event_data))
 
 	def on(self, event, callback):
 		if (not event in self.events.keys()):
