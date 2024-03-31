@@ -46,7 +46,9 @@ class WebSocketManager():
 
 		if (op == OP_HELLO):
 			interval = data["d"]["heartbeat_interval"]
-			Thread(target=ws_heartbeat, args=(ws, interval,)).start()
+			thread = Thread(target=ws_heartbeat, args=(ws, interval,))
+			thread.daemon = True
+			thread.start()
 		elif(op == OP_EVENT_DISPATCH):
 			self.emit_events(data)
 
