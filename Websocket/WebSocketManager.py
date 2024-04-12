@@ -25,7 +25,7 @@ class WebSocketManager():
 		self.on("READY", self.ready)
 	
 	def is_valid_token(self):
-		if (self.gateway.requester.get("quests/@me").status_code != 200):
+		if (self.gateway.requester.get("explicit-media/current-version").status_code != 200):
 			self.emit_events({"t":"TOKEN_FAILURE", "d":{}})
 			self.ws.close()
 			exit()
